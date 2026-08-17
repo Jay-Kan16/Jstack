@@ -9,9 +9,12 @@ const {
     validateProduct
 } = require("../middleWare/validationMiddleware");
 
+const upload = require("../middleWare/multer");
+
 router.post(
     "/",
     authenticate,
+    upload.single("image"),
     validateProduct,
     productController.createProduct
 );
@@ -38,5 +41,6 @@ router.delete(
     authenticate,
     productController.deleteProduct
 );
+
 
 module.exports = router;

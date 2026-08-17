@@ -7,11 +7,13 @@ const authRoutes = require("./src/routes/auth.route");
 const productRoutes = require("./src/routes/product.route");
 
 const app = express();
+const path = require("path");
 
 connectDB();
 
 
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(cookieParser());
 
 app.use("/auth", authRoutes);

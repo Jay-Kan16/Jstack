@@ -30,6 +30,11 @@ const productSchema = new mongoose.Schema(
         category: {
             type: String,
             default: "General"
+        },
+
+        image: {
+            type: String,
+            default: ""
         }
     },
     {

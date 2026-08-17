@@ -12,16 +12,18 @@ const createProduct = async (req, res) => {
             });
         }
 
-        const { name, price, SKU, description, category } = req.body;
+const { name, price, SKU, description, category } = req.body;
 
-        const product = await productModel.create({
-            name,
-            price,
-            SKU,
-            description,
-            category
-        });
-
+const product = await productModel.create({
+    name,
+    price,
+    SKU,
+    description,
+    category,
+    image: req.file
+        ? `/uploads/products/${req.file.filename}`
+        : ""
+});
         return res.status(201).json({
             success: true,
             message: "Product created successfully",
@@ -165,6 +167,7 @@ const deleteProduct = async (req, res) => {
         });
     }
 };
+
 
 module.exports = {
     createProduct,
